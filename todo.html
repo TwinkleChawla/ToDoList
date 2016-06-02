@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>To Do App</title>
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+	<div class="row">
+    	<form class="col s12" style="float: left">
+      		<div class="row">
+        		<div class="input-field col s5"  style="margin-top: 2%;">
+          			<input id="task" type="text">
+        		</div>
+        		<div class="col s2">
+        			<a class="waves-effect waves-light btn" id="add" style="margin-top: 20%;">Add Task</a>
+        		</div>
+			</div>
+		</form>
+		<div class="col s5" id="done" style="float: right; text-align: center; margin-right: 2%;">
+			<div>
+				<h1>Done</h1>
+			</div>
+		</div>
+	<div id="todos">
+	</div>
+	</div>
+</body>
+</html>
+<script src="todo.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
