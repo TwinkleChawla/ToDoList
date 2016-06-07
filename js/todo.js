@@ -9,7 +9,6 @@
      
     function add() {
         var task = document.getElementById('task').value;
-     
         var todos = get_todos();
         todos.push(task);
         localStorage.setItem('todo', JSON.stringify(todos));
@@ -29,15 +28,25 @@
      
         return false;
     }
-     
+
+    //Random Colour generator
+    function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+
     function show() {
         var todos = get_todos();
-     
-        var html = '<ul>';
+        var randColor = getRandomColor();
+        var html = '<div class="col s6" style="margin-left:1rem;">';
         for(var i=0; i<todos.length; i++) {
-            html += '<li>' + todos[i] + '<button class="remove" id="' + i  + '">x</button></li>';
+            html += '<div class="card-panel col s6" style="background-color:randColor;" draggable="true" ondragstart="return dragStart(ev)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
         };
-        html += '</ul>';
+        html += '</div>';
      
         document.getElementById('todos').innerHTML = html;
      
@@ -46,6 +55,30 @@
             buttons[i].addEventListener('click', remove);
         };
     }
+
+    function dragStart(ev) {
+            ev.dataTransfer.effectAllowed='move';
+            ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
+            ev.dataTransfer.setDragImage(ev.target,0,0);
+            
+            return true;
+         }    
+
+    function dragEnter(ev) {
+            event.preventDefault();
+            return true;
+         }
+         
+    function dragOver(ev) {
+            return false;
+         }
+         
+    function dragDrop(ev) {
+            var src = ev.dataTransfer.getDataById(id);
+            ev.target.appendChild(document.getElementById(src));
+            ev.stopPropagation();
+            return false;   
+         }
      
     document.getElementById('add').addEventListener('click', add);
     show();
