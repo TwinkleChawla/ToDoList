@@ -44,7 +44,7 @@
         var randColor = getRandomColor();
         var html = '<div class="col s6" style="margin-left:1rem;">';
         for(var i=0; i<todos.length; i++) {
-            html += '<div class="card-panel col s6" style="background-color:randColor;" draggable="true" ondragstart="return dragStart(ev)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
+            html += '<div class="card-panel col s6" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
         };
         html += '</div>';
      
@@ -56,29 +56,35 @@
         };
     }
 
-    function dragStart(ev) {
-            ev.dataTransfer.effectAllowed='move';
-            ev.dataTransfer.setData("Text", ev.target.getAttribute('id'));
-            ev.dataTransfer.setDragImage(ev.target,0,0);
-            
-            return true;
-         }    
+    function drag(ev) {
+            ev.dataTransfer.setData("Text", ev.target.class);            
+         } 
 
-    function dragEnter(ev) {
+    function allowDrop(ev) {
+    ev.preventDefault();
+    }
+
+    function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("Text");
+    ev.target.appendChild(document.getElementById(data));
+    }   
+    
+    /*function dragEnter(ev) {
             event.preventDefault();
             return true;
-         }
+         }*/
          
-    function dragOver(ev) {
+    /*function dragOver(ev) {
             return false;
-         }
+         }*/
          
-    function dragDrop(ev) {
+    /*function dragDrop(ev) {
             var src = ev.dataTransfer.getDataById(id);
             ev.target.appendChild(document.getElementById(src));
             ev.stopPropagation();
             return false;   
-         }
+         }*/
      
     document.getElementById('add').addEventListener('click', add);
     show();

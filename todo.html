@@ -13,15 +13,17 @@
           			<input id="task" type="text">
         		</div>
         		<div class="col s2">
-        			<a class="waves-effect waves-light btn" id="add" style="margin-top: 20%;" contenteditable>Add Task</a>
+        			<a class="waves-effect waves-light btn" id="add" style="margin-top: 20%;">Add Task</a>
         		</div>
 			</div>
 		</form>
-		<div class="col s5" id="done" style="float: right; text-align: center; margin-right: 2%;">
+		<div class="col s5" style="float: right; text-align: center; margin-right: 2%;">
 			<div>
-				<h1>Done</h1>
+				<h1 id="done">Done</h1>
+				<div style="width:400px;height:420px;padding:10px;border:1px solid #aaaaaa;" id="drop" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 			</div>
 		</div>
+
 	<div id="todos">
 	</div>
 	</div>
