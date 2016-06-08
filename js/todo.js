@@ -12,7 +12,6 @@
         var todos = get_todos();
         todos.push(task);
         localStorage.setItem('todo', JSON.stringify(todos));
-     
         show();
      
         return false;
@@ -44,7 +43,7 @@
         var randColor = getRandomColor();
         var html = '<div class="col s6" style="margin-left:1rem;">';
         for(var i=0; i<todos.length; i++) {
-            html += '<div class="card-panel col s6" id="drag" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
+            html += '<div class="card-panel col s6" class="drag" id="' + i  + '" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
         };
         html += '</div>';
      
@@ -72,18 +71,22 @@
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
     ev.target.appendChild(document.getElementById(data));
+
+    /*function doneSection(){
+        var item = document.getElementById(drag);
+        var done_str = localStorage.getItem('item');
+        if (done_str !== null) {
+            dones = JSON.parse(done_str); 
+            }
+        return dones;
+        }
+        var dones = doneSection();
+        dones.push(done);
+        localStorage.setItem('item', JSON.stringify(dones));
+        show();*/
     } 
 
-    /*function dragOver(ev) {
-        return false;
-    }
-         
-    function dragDrop(ev) {
-        var src = ev.dataTransfer.getData("Text");
-        ev.target.appendChild(document.getElementById(src));
-        ev.stopPropagation();
-        return false;
-    }*/
-
-    document.getElementById('add').addEventListener('click', add);
+   document.getElementById('add').addEventListener('click', add);
     show();
+
+    
