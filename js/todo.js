@@ -13,7 +13,6 @@
         todos.push(task);
         localStorage.setItem('todo', JSON.stringify(todos));
         show();
-     
         return false;
     }
      
@@ -29,18 +28,17 @@
     }
 
     //Random Colour generator
-    function getRandomColor() {
+    /*function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-    }
+    }*/
 
     function show() {
         var todos = get_todos();
-        var randColor = getRandomColor();
         var html = '<div class="col s6" style="margin-left:1rem;">';
         for(var i=0; i<todos.length; i++) {
             html += '<div class="card-panel col s6" class="drag" id="' + i  + '" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
@@ -56,7 +54,7 @@
     }
 
     function drag(ev) {
-            ev.dataTransfer.setData("Text", ev.target.id);            
+        ev.dataTransfer.setData("Text", ev.target.id); 
     } 
 
     function allowDrop(ev) {
@@ -71,20 +69,7 @@
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
     ev.target.appendChild(document.getElementById(data));
-
-    /*function doneSection(){
-        var item = document.getElementById(drag);
-        var done_str = localStorage.getItem('item');
-        if (done_str !== null) {
-            dones = JSON.parse(done_str); 
-            }
-        return dones;
-        }
-        var dones = doneSection();
-        dones.push(done);
-        localStorage.setItem('item', JSON.stringify(dones));
-        show();*/
-    } 
+    }
 
    document.getElementById('add').addEventListener('click', add);
     show();
