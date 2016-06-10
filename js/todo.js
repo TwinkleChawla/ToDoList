@@ -55,7 +55,7 @@
 
     function drag(ev) {
         ev.dataTransfer.setData("Text", ev.target.id); 
-    } 
+        } 
 
     function allowDrop(ev) {
     ev.preventDefault();
@@ -69,9 +69,10 @@
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
     ev.target.appendChild(document.getElementById(data));
+    localStorage.setItem('item', ev.target.id);
+    var item = localStorage.getItem('item');
+    return item;
     }
 
    document.getElementById('add').addEventListener('click', add);
-    show();
-
-    
+    show(); 
