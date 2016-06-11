@@ -65,10 +65,21 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
     ev.target.appendChild(document.getElementById(data));
-    localStorage.setItem('item', ev.target.id);
-    var item = localStorage.getItem('item');
-    return item;
+    var droppedItem = document.getElementById("drop").innerHTML;
+    localStorage['item'] = droppedItem;
+    //var item = localStorage['item'];
+    //return false;
 }
+
+function doneTask() {
+    var myDoneTask = localStorage['item'];
+            
+        if (myDoneTask != undefined) {
+            document.getElementById("drop").innerHTML = myDoneTask;
+        }
+    }
 
 document.getElementById('add').addEventListener('click', add);
 show(); 
+
+document.addEventListener("DOMContentLoaded", doneTask, false);
