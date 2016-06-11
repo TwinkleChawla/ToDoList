@@ -51,6 +51,7 @@ function show() {
 
 function drag(ev) {
     ev.dataTransfer.setData("Text", ev.target.id); 
+    
 } 
 
 function allowDrop(ev) {
@@ -77,7 +78,8 @@ function doneTask() {
         if (myDoneTask != undefined) {
             document.getElementById("drop").innerHTML = myDoneTask;
         }
-    }
+        //localStorage.clear();
+}
 
 document.getElementById('add').addEventListener('click', add);
 show(); 
