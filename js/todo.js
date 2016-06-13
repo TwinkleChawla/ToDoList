@@ -50,8 +50,7 @@ function show() {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData("Text", ev.target.id); 
-    
+    ev.dataTransfer.setData("Text", ev.target.id);
 } 
 
 function allowDrop(ev) {
@@ -68,17 +67,21 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
-    //var item = localStorage['item'];
-    //return false;
+    //This will delete the dragged item hung in ToDo Section!!
+    var id = ev.target.id;
+    var todos = get_todos();
+    todos.splice(id, 1);
+    localStorage.setItem('todo', JSON.stringify(todos)); 
+    show();
 }
 
 function doneTask() {
-    var myDoneTask = localStorage['item'];
-            
-        if (myDoneTask != undefined) {
-            document.getElementById("drop").innerHTML = myDoneTask;
-        }
-        //localStorage.clear();
+    var myDoneTask = localStorage['item'];     
+    if (myDoneTask != undefined) {
+        document.getElementById("drop").innerHTML = myDoneTask;
+    }
+    //localStorage.clear(); ---> only for testing
+
 }
 
 document.getElementById('add').addEventListener('click', add);
