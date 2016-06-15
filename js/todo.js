@@ -68,13 +68,14 @@ function drop(ev) {
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
     //This will remove the dragged item hung in ToDo Section!!
-    ev.preventDefault();
-    var id =  document.getElementsByClassName('drag').id
-    alert(id);
-    /*var todoDone = get_todos();
+    //ev.preventDefault();
+    //var t =  document.getElementsByClassName('drag');
+    var id = document.getElementById(data).getAttribute('id');
+    //alert(id);
+    var todoDone = get_todos();
     todoDone.splice(id, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
-    show();*/
+    show();
 }
 
 function doneTask() {
