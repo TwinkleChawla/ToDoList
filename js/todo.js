@@ -67,21 +67,22 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
-    //This will delete the dragged item hung in ToDo Section!!
-    var id = ev.target.id;
-    var todos = get_todos();
-    todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos)); 
-    show();
+    //This will remove the dragged item hung in ToDo Section!!
+    ev.preventDefault();
+    var id =  document.getElementsByClassName('drag').id
+    alert(id);
+    /*var todoDone = get_todos();
+    todoDone.splice(id, 1); 
+    localStorage.setItem('todo', JSON.stringify(todoDone)); 
+    show();*/
 }
 
 function doneTask() {
-    var myDoneTask = localStorage['item'];     
+var myDoneTask = localStorage['item'];     
     if (myDoneTask != undefined) {
         document.getElementById("drop").innerHTML = myDoneTask;
     }
-    //localStorage.clear(); ---> only for testing
-
+    //localStorage.removeItem('item'); //---> only for testing
 }
 
 document.getElementById('add').addEventListener('click', add);
