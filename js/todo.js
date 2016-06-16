@@ -68,14 +68,19 @@ function drop(ev) {
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
     //This will remove the dragged item hung in ToDo Section!!
-    //ev.preventDefault();
-    //var t =  document.getElementsByClassName('drag');
     var id = document.getElementById(data).getAttribute('id');
-    //alert(id);
     var todoDone = get_todos();
     todoDone.splice(id, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
     show();
+
+    //count for the done items
+    var element = document.getElementById("drop");
+    var numberOfChildren = element.getElementsByTagName('*').length/2;
+    //alert(numberOfChildren);
+    for (var i=0; i<numberOfChildren; i++ )
+        var changedId = element.getElementsByTagName('').id = i;
+    //alert(changedId);
 }
 
 function doneTask() {
@@ -84,9 +89,11 @@ var myDoneTask = localStorage['item'];
         document.getElementById("drop").innerHTML = myDoneTask;
     }
     //localStorage.removeItem('item'); //---> only for testing
+    // same id wala move nhi hoga
 }
 
 document.getElementById('add').addEventListener('click', add);
 show(); 
 
 document.addEventListener("DOMContentLoaded", doneTask, false);
+
