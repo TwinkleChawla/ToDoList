@@ -79,7 +79,7 @@ function drop(ev) {
     var numberOfChildren = element.getElementsByTagName('*').length/2;
     //alert(numberOfChildren);
     for (var i=0; i<numberOfChildren; i++ )
-        var changedId = element.getElementsByTagName('').id = i;
+        var changedId = element.getElementsByTagName('*').id = i;
     //alert(changedId);
 }
 
