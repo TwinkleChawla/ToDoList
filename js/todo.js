@@ -64,9 +64,7 @@ function allowDrop(ev) {
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("Text");
-    ev.target.appendChild(document.getElementById(data));
-    
-    //---------------------------------------------------------------------------------------------------
+    ev.target.appendChild(document.getElementById(data));    
     var element = document.getElementById('drop');
     var numberOfChildren = element.getElementsByTagName('*').length/2;
     alert(numberOfChildren);
@@ -75,8 +73,6 @@ function drop(ev) {
     alert(thisElement);
        /* var changedId = element.getElementsByTagName('div').id = numberOfChildren-1;
     alert(changedId);*/
-    //---------------------------------------------------------------------------------------------------
-
 
     
     var droppedItem = document.getElementById("drop").innerHTML;
@@ -102,13 +98,19 @@ function removeDoneTask(){
     var id = this.getAttribute('thisElement');
     var done = localStorage['item'];
     done.splice(id, 1);
-    localStorage.setItem('item', JSON.stringify(done)); 
-    show(); 
+    localStorage.setItem('item', JSON.stringify(done));     
+    //show();
     return false;
 }
+
+function handle(e){
+        if(e.keyCode === 13){
+            e.preventDefault();
+            add();
+        }
+    }
 
 document.getElementById('add').addEventListener('click', add);
 show(); 
 
 document.addEventListener("DOMContentLoaded", doneTask, false);
-
