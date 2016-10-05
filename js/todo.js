@@ -25,21 +25,22 @@ function remove() {
     return false;
 }
 
-    //Random Colour generator
-    /*function getRandomColor() {
+//Random Colour generator
+function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-    }*/
+    alert("Color!")
+}
 
 function show() {
     var todos = get_todos();
     var html = '<div class="col s6" style="margin-left:1rem;">';
     for(var i=0; i<todos.length; i++) {
-        html += '<div class="card-panel col s6" class="drag" id="' + i  + '" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
+        html += '<div class="card-panel teal lighten-4 col s6" class="drag" id="' + i  + '" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
     };
     html += '</div>'; 
     document.getElementById('todos').innerHTML = html; 
@@ -67,22 +68,31 @@ function drop(ev) {
     ev.target.appendChild(document.getElementById(data));    
     var element = document.getElementById('drop');
     var numberOfChildren = element.getElementsByTagName('*').length/2;
-    alert(numberOfChildren);
-    //for (var i=0; i<numberOfChildren; i++ )
+    //alert(numberOfChildren);
     var thisElement = document.getElementById(data).id = numberOfChildren-1;
-    alert(thisElement);
-       /* var changedId = element.getElementsByTagName('div').id = numberOfChildren-1;
-    alert(changedId);*/
-
-    
+    //alert(thisElement);
+    //-----------------------------------------------------------------------------------------------------------
+    //button id not changing
+    var changeButtonId = document.getElementById(data).getElementsByTagName('button')[0].id ; //= numberOfChildren-1;
+    alert(changeButtonId);
+    //-----------------------------------------------------------------------------------------------------------
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
+    
     //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
     /*var id = document.getElementById(data).getAttribute('id');
     var todoDone = get_todos();
     todoDone.splice(id, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
     show();*/
+
+    /*var id = document.getElementById(data).getAttribute('id');
+    var todos = get_todos();
+    todos.splice(id, 1);
+    localStorage.setItem('todo', JSON.stringify(todos)); 
+    show(); 
+    return false;*/
+    
 }
 
 function doneTask() {
@@ -94,14 +104,14 @@ var myDoneTask = localStorage['item'];
     // same id wala move nhi hoga
 }
 //Need to change class='remove' located inside button in show function.
-function removeDoneTask(){
+/*function removeDoneTask(){
     var id = this.getAttribute('thisElement');
     var done = localStorage['item'];
     done.splice(id, 1);
     localStorage.setItem('item', JSON.stringify(done));     
     //show();
     return false;
-}
+}*/
 
 function handle(e){
         if(e.keyCode === 13){
