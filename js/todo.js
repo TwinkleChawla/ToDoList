@@ -72,18 +72,20 @@ function drop(ev) {
     var thisElement = document.getElementById(data).id = numberOfChildren-1;
     //alert(thisElement);
 
-    //-----------------------------------------------------------------------------------------------------------
-    //button id not changing
-    var changeButtonId = document.getElementById(thisElement).getElementsByTagName('button')[0].id=numberOfChildren-1;
-    alert(changeButtonId);
-    //-----------------------------------------------------------------------------------------------------------
-   
-    //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
+     //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
     var id = document.getElementById(data).getAttribute('id');
     var todoDone = get_todos();
     todoDone.splice(id, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
     show();
+
+    //-----------------------------------------------------------------------------------------------------------
+    //button id not changing
+    var changeButtonId = document.getElementById(thisElement).getElementsByTagName('button')[0].id = numberOfChildren-1;
+    alert(changeButtonId);
+    //-----------------------------------------------------------------------------------------------------------
+   
+   
 
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
