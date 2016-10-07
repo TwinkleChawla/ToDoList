@@ -71,37 +71,32 @@ function drop(ev) {
     //alert(numberOfChildren);
     var thisElement = document.getElementById(data).id = numberOfChildren-1;
     //alert(thisElement);
+
     //-----------------------------------------------------------------------------------------------------------
     //button id not changing
-    var changeButtonId = document.getElementById(data).getElementsByTagName('button')[0].id ; //= numberOfChildren-1;
+    var changeButtonId = document.getElementById(thisElement).getElementsByTagName('button')[0].id=numberOfChildren-1;
     alert(changeButtonId);
     //-----------------------------------------------------------------------------------------------------------
-    var droppedItem = document.getElementById("drop").innerHTML;
-    localStorage['item'] = droppedItem;
-    
+   
     //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
-    /*var id = document.getElementById(data).getAttribute('id');
+    var id = document.getElementById(data).getAttribute('id');
     var todoDone = get_todos();
     todoDone.splice(id, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
-    show();*/
+    show();
 
-    /*var id = document.getElementById(data).getAttribute('id');
-    var todos = get_todos();
-    todos.splice(id, 1);
-    localStorage.setItem('todo', JSON.stringify(todos)); 
-    show(); 
-    return false;*/
-    
+    var droppedItem = document.getElementById("drop").innerHTML;
+    localStorage['item'] = droppedItem;
 }
 
 function doneTask() {
 var myDoneTask = localStorage['item'];     
     if (myDoneTask != undefined) {
         document.getElementById("drop").innerHTML = myDoneTask;
-    }       
+    }   
     //localStorage.removeItem('item'); //---> only for testing
     // same id wala move nhi hoga
+    //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
 }
 //Need to change class='remove' located inside button in show function.
 /*function removeDoneTask(){
