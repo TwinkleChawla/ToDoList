@@ -18,8 +18,9 @@ function add() {
      
 function remove() {
     var id = this.getAttribute('id');
+    var num = id.replace( /^\D+/g, '');
     var todos = get_todos();
-    todos.splice(id, 1);
+    todos.splice(num, 1);
     localStorage.setItem('todo', JSON.stringify(todos)); 
     show(); 
     return false;
@@ -40,7 +41,7 @@ function show() {
     var todos = get_todos();
     var html = '<div class="col s6" style="margin-left:1rem;">';
     for(var i=0; i<todos.length; i++) {
-        html += '<div class="card-panel teal lighten-4 col s6" class="drag" id="' + i  + '" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="' + i  + '"></div>';
+        html += '<div class="card-panel teal lighten-4 col s6" class="drag" id="todo_' + i + '" draggable="true" ondragstart="drag(event)">' + todos[i]  + '<button class="remove" style="float:right" id="button_' + i + '"></div>';
     };
     html += '</div>'; 
     document.getElementById('todos').innerHTML = html; 
@@ -73,19 +74,15 @@ function drop(ev) {
     //alert(thisElement);
 
      //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
-    var id = document.getElementById(data).getAttribute('id');
+    var id = document.getElementById(data);
     var todoDone = get_todos();
     todoDone.splice(id, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
     show();
 
-    //-----------------------------------------------------------------------------------------------------------
-    //button id not changing
+    //To change button id
     var changeButtonId = document.getElementById(thisElement).getElementsByTagName('button')[0].id = numberOfChildren-1;
-    alert(changeButtonId);
-    //-----------------------------------------------------------------------------------------------------------
-   
-   
+    //alert(changeButtonId);   
 
     var droppedItem = document.getElementById("drop").innerHTML;
     localStorage['item'] = droppedItem;
@@ -97,18 +94,17 @@ var myDoneTask = localStorage['item'];
         document.getElementById("drop").innerHTML = myDoneTask;
     }   
     //localStorage.removeItem('item'); //---> only for testing
-    // same id wala move nhi hoga
-    //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
 }
+
 //Need to change class='remove' located inside button in show function.
-/*function removeDoneTask(){
+function removeDoneTask(){
     var id = this.getAttribute('thisElement');
     var done = localStorage['item'];
     done.splice(id, 1);
     localStorage.setItem('item', JSON.stringify(done));     
     //show();
     return false;
-}*/
+}
 
 function handle(e){
         if(e.keyCode === 13){
