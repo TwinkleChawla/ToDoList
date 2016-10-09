@@ -18,8 +18,7 @@ function add() {
      
 function remove() {
     var id = this.getAttribute('id');
-    var num = id.replace( /^\D+/g, '');
-    var todos = get_todos();
+    var num = id.replace( /^\D+/g, '');     var todos = get_todos();
     todos.splice(num, 1);
     localStorage.setItem('todo', JSON.stringify(todos)); 
     show(); 
@@ -74,9 +73,10 @@ function drop(ev) {
     //alert(thisElement);
 
      //This will remove the dragged item hung in ToDo Section!!     ---------> REMOVED ONLY FOR TESTING
-    var id = document.getElementById(data);
+    var num = data.replace( /^\D+/g, '');
+    //alert(num);
     var todoDone = get_todos();
-    todoDone.splice(id, 1); 
+    todoDone.splice(num, 1); 
     localStorage.setItem('todo', JSON.stringify(todoDone)); 
     show();
 
@@ -93,17 +93,11 @@ var myDoneTask = localStorage['item'];
     if (myDoneTask != undefined) {
         document.getElementById("drop").innerHTML = myDoneTask;
     }   
-    //localStorage.removeItem('item'); //---> only for testing
 }
 
-//Need to change class='remove' located inside button in show function.
-function removeDoneTask(){
-    var id = this.getAttribute('thisElement');
-    var done = localStorage['item'];
-    done.splice(id, 1);
-    localStorage.setItem('item', JSON.stringify(done));     
-    //show();
-    return false;
+function deleteMe(){
+    localStorage.removeItem('item');
+     window.location.reload();
 }
 
 function handle(e){
